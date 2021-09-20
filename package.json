@@ -1,6 +1,6 @@
 {
   "name": "flexid",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A tiny, fast, sortable, flexible id generator",
   "keywords": [
     "uuid",
