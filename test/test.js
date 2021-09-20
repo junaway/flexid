@@ -6,7 +6,7 @@ import short from 'short-uuid'
 import crypto from 'crypto'
 import { nanoid, customAlphabet } from 'nanoid'
 import ksuid from 'ksuid'
-import { generator, BASE} from '../src/uuid.js';
+import { generator, BASE } from '../src/uuid.js';
 
 import Benchmarkify from 'benchmarkify'
 
@@ -95,17 +95,19 @@ name = 'ksuid'
 func = () => { return ksuid.randomSync().string}
 add(name, func)
 
-name = 'xid [22]'
+name = 'flexid [22]'
 func = generator()
 add(name, func)
 
-name = 'xid [27]'
+name = 'flexid [27]'
 func = generator(27)
 add(name, func)
 
-name = 'xid [16]'
+name = 'flexid [16]'
 func = generator(16)
 add(name, func)
 
 //--------------------------------------------------------------------/
+console.log(''.padStart(pads), '                                     ')
+
 bench.run();

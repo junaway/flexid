@@ -3,12 +3,12 @@
 const translator = (alphabet) => {
     const size = alphabet.length;
     let encr = {};
-    let decr = {};
+    //let decr = {};
 
     for (let i = 0, c = ''; i < size; i++) {
         c = alphabet[i];
         encr[i] = c;
-        decr[c] = i;
+        //decr[c] = i;
     }
 
     const encode = (decd) => {
@@ -20,6 +20,7 @@ const translator = (alphabet) => {
         return encd;
     }
 
+    /*
     const decode = (encd) => {
         let decd = 0;
         for (let i = 0; i < encd.length; i++) {
@@ -28,8 +29,9 @@ const translator = (alphabet) => {
         }
         return decd;
     }
+    */
 
-    return { encode, decode };
+    return { encode };
 }
 
 export default translator;
