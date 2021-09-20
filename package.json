@@ -30,7 +30,6 @@
     "husky": "^4.2.3",
     "ksuid": "^2.0.0",
     "lint-staged": "^10.0.8",
-    "nanoid": "^3.1.25",
     "prettier": "^1.19.1",
     "short-uuid": "^4.2.0",
     "uuid": "^8.3.2",
@@ -47,6 +46,6 @@
     ]
   },
   "dependencies": {
-    "esbuild": "^0.12.28"
+    "nanoid": "^3.1.25"
   }
 }
