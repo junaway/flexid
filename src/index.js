@@ -53,4 +53,4 @@ const generator = (
   };
 };
 
-module.exports = { uuid: generator(), generator, BASE };
+module.exports = { flexid: generator(), generator, BASE };
