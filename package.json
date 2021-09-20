@@ -1,0 +1,51 @@
+{
+  "name": "flex-uuid",
+  "version": "0.1.0",
+  "description": "A fast, flexible, sortable uuid generator",
+  "keywords": [
+    "uuid",
+    "fast",
+    "flexible",
+    "sortable"
+  ],
+  "author": "junaway",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junaway/flex-uuid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/junaway/flex-uuid/issues"
+  },
+  "homepage": "https://github.com/junaway/flex-uuid#readme",
+  "type": "module",
+  "main": "src/uuid.js",
+  "scripts": {
+    "test": "node ./test/test"
+  },
+  "dependencies": {
+    "nanoid": "^3.1.25"
+  },
+  "devDependencies": {
+    "base-x": "^3.0.8",
+    "benchmarkify": "^3.0.0",
+    "ksuid": "^2.0.0",
+    "short-uuid": "^4.2.0",
+    "uuid": "^8.3.2",
+    "uuid-random": "^1.3.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
