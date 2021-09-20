@@ -1,8 +1,8 @@
 "use strict";
 
-import recorder from "./utils/timestamp.js";
-import translator from "./utils/base.js";
-import { customAlphabet as randomizer } from "nanoid";
+const recorder = require("./utils/timestamp");
+const translator = require("./utils/base");
+const { customAlphabet: randomizer } = require("nanoid");
 
 const BASE = {
   "58": "  123456789ABCDEFGH JKLMN PQRSTUVWXYZ abcdefghijk mnopqrstuvwxyz".replace(
@@ -26,7 +26,7 @@ const BASE = {
 const generator = (
   size = 22,
   alphabet = BASE["58"],
-  offset = 1577649600000,
+  offset = 1500000000000,
   divider = 1000,
 ) => {
   size = size < 6 ? 6 : size > 32 ? 32 : size;
@@ -53,5 +53,4 @@ const generator = (
   };
 };
 
-export { generator, BASE };
-export default generator();
+module.exports = { uuid: generator(), generator, BASE };

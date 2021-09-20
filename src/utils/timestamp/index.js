@@ -7,4 +7,4 @@ const recorder = (offset, divider) => {
     return { tick };
 }
 
-export default recorder;
+module.exports = recorder;

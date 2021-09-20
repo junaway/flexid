@@ -34,4 +34,4 @@ const translator = (alphabet) => {
     return { encode };
 }
 
-export default translator;
+module.exports = translator;

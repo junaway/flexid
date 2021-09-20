@@ -1,14 +1,14 @@
-import { v1 as uuidv1 } from 'uuid';
-import { v4 as uuidv4 } from 'uuid';
-import uuid from 'uuid-random'
-import base_x from 'base-x'
-import short from 'short-uuid'
-import crypto from 'crypto'
-import { nanoid, customAlphabet } from 'nanoid'
-import ksuid from 'ksuid'
-import { generator, BASE } from '../src/uuid.js';
+const { v1: uuidv1 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
+const uuid = require('uuid-random');
+const base_x = require('base-x');
+const short = require('short-uuid');
+const crypto = require('crypto');
+const { nanoid, customAlphabet } = require('nanoid');
+const ksuid = require('ksuid');
+const { generator, BASE } = require('../');
 
-import Benchmarkify from 'benchmarkify'
+const Benchmarkify = require('benchmarkify');
 
 //--------------------------------------------------------------------/
 const benchmark = new Benchmarkify("UUID Benchmark").printHeader();
