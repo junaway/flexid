@@ -25,13 +25,12 @@
     "build": "webpack"
   },
   "dependencies": {
-    "nanoid": "^3.1.25"
   },
   "devDependencies": {
+    "nanoid": "^3.1.25",
     "base-x": "^3.0.8",
     "benchmarkify": "^3.0.0",
     "esbuild": "^0.12.28",
-    "esbuild-loader": "^2.15.1",
     "esbuild-minifier-webpack-plugin": "^1.2.11",
     "husky": "^4.2.3",
     "ksuid": "^2.0.0",
