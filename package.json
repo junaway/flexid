@@ -1,7 +1,7 @@
 {
   "name": "flexid",
   "version": "0.3.0",
-  "description": "A tiny, fast, sortable, flexible uuid generator",
+  "description": "A tiny, fast, sortable, flexible id generator",
   "keywords": [
     "uuid",
     "tiny",
