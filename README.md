@@ -19,7 +19,7 @@ npm i flexid
 ### Basic setup
 
 ```javascript
-import { generator, BASE } from 'flexid'
+const { flexid } = require('flexid')
 
 /// 1 sec accuracy and over a 100 years before overflow
 /// 6 bytes of timestamp + 16 bytes of randomness
@@ -28,13 +28,13 @@ import { generator, BASE } from 'flexid'
 // alphabet = BASE['58']
 // offset = 15e11
 // divider = 1000
-const flexid = generator();
 console.log(flexid()) // 15pQCM9cN5AMvSW9QinRs6
 ```
 
 ### Fully configured
 
 ```javascript
+const { generator, BASE } = require('flexid')
 /// .1 sec accuracy and over a 1000 years before overflow
 /// 6 bytes of timestamp + 8 bytes of randomness
 /// alphanumeric encoding
