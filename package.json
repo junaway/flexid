@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/junaway/flexid#readme",
   "type": "module",
-  "main": "dist/main.js",
+  "main": "src/uuid.js",
   "scripts": {
     "test": "node ./test/test"
   },
