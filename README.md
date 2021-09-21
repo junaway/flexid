@@ -1,5 +1,5 @@
 # flexid
-A tiny, fast, sortable flexible id generator.
+A tiny, fast, sortable, flexible id generator.
 
 ## Install
 
@@ -9,10 +9,30 @@ npm i flexid
 
 ## Features
 
-  * Tiny ! (1k minified + gzipped)
-  * Uses nanoid for fast, secure collision-resistant ids
-  * Uses Date.now + base encoding for sortable ids (like ksuid)
-  * Fast ! (As fast as uuid/v1)
+  * Tiny ! (only one dependency : [nanoid](https://www.npmjs.com/package/nanoid))
+  * Uses [nanoid](https://www.npmjs.com/package/nanoid) for fast, secure collision-resistant ids
+  * Uses Date.now + base encoding for sortable ids (similar to [ksuid](https://www.npmjs.com/package/ksuid) and [ulid](https://www.npmjs.com/package/ulid))
+  * Fast ! (faster than [uuid/v4](https://www.npmjs.com/package/uuid))
+
+## To do
+
+  * **Speed up the "randomness" part of the id.**
+The header (or timestamp) generator runs at 6 Mops while the payload (or randomness) generator runs at 2Mops (since it is based on [nanoid](https://www.npmjs.com/package/nanoid)). And we cannot go faster than [nanoid](https://www.npmjs.com/package/nanoid) as long as we rely on [nanoid](https://www.npmjs.com/package/nanoid)...
+If only we could use [uuid-random](https://www.npmjs.com/package/uuid-random) somehow and encode the .bin() output into an arbitrary base, and all that faster than [nanoid](https://www.npmjs.com/package/nanoid)...
+  * **Add support for variable-size headers.**
+The header (or timestamp) is currently a 6-byte fixed-size block. For a given flexid size (e.g. size=22), the payload (or randomness) is a variable-size block (e.g. 22 - 6 = 16).
+Within the 6-byte block, we can tune the time resolution from 100ms to 1h (e.g. 1s or divider=1000) and the time origin (e.g. offset=15E11), and the time horizon will be defined automatically (e.g. for alphabet=BASE['60'], 60^6/60/60/24/365 ~ 1500 years since 15e11).
+The general equation for the time horizon in years is : alphabet\_size^block\_size)\*(divider/1000)/(60\*60\*24\*365.25).
+There are two major scenarios : the baseline-horizon scenario (at least 100 years) and the robust-horizon scenario (at least a thousand years). 
+If only we could dynamically define the block size depending on the horizon scenario and the divider then, for the same id size, we could have more randonmess in some case.
+  * **Add a proper test suite...**
+  * **Add support for types.**
+Typescript is all there is nowadays...
+  * **Add support for an *optional* user-defined namespace.**
+We are thinking of something like :timestamp[:namespace]:randomness.
+  * **Add support for an *optional* user-defined prefix.**
+Similar to what the [Stripe API](https://stripe.com/docs/api) does.
+We are thinking of something like [:prefix]:timestamp:randomness.
 
 ## Example Usage
 
