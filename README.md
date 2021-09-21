@@ -12,7 +12,7 @@ npm i flexid
   * Tiny ! (only one dependency : [nanoid](https://www.npmjs.com/package/nanoid))
   * Uses [nanoid](https://www.npmjs.com/package/nanoid) for fast, secure collision-resistant ids
   * Uses Date.now as header for sortable ids (similar to [ksuid](https://www.npmjs.com/package/ksuid) and [ulid](https://www.npmjs.com/package/ulid))
-  * Uses base encoding (58 through 64) for high-density is (similar to [nanoid](https://www.npmjs.com/package/nanoid) and [short-uuid](https://www.npmjs.com/package/short-uuid))
+  * Uses base encoding (58 through 64) for high-density, compact ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) and [short-uuid](https://www.npmjs.com/package/short-uuid))
   * Fast ! (faster than [uuid/v4](https://www.npmjs.com/package/uuid))
 
 ## Features
