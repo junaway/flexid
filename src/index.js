@@ -5,6 +5,10 @@ const translator = require("./utils/base");
 const { customAlphabet: randomizer } = require("nanoid");
 
 const BASE = {
+  "48": "    34 6789ABCDEFGH JKLMN PQR TUVWXY  abcdefghijk mn pqr t  wxyz".replace(
+    /\s/g,
+    "",
+  ),
   "58": "  123456789ABCDEFGH JKLMN PQRSTUVWXYZ abcdefghijk mnopqrstuvwxyz".replace(
     /\s/g,
     "",
@@ -29,12 +33,13 @@ const generator = (
   offset = 1500000000000,
   divider = 1000,
 ) => {
-  size = size < 6 ? 6 : size > 32 ? 32 : size;
+  size = size < 8 ? 8 : size > 32 ? 32 : size;
+  alphabet = alphabet;
   alphabet =
     alphabet.length > 64
       ? BASE["64"]
-      : alphabet.length < 58
-      ? BASE["58"]
+      : alphabet.length < 48
+      ? BASE["48"]
       : alphabet.length % 2
       ? BASE[alphabet.length - (alphabet.length % 2)]
       : alphabet;
