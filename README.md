@@ -113,19 +113,19 @@ MIT.
                              flexid [27] 1ChzQahc25eWRovi5gFXeYk5Sa1
                              flexid [16] 1ChzQanzELjCZejN
                                                                                 
-  Suite: UUID Benchmark
-  ✔ uuidv1                                     1,752,669 rps
-  ✔ uuidv4                                     1,396,807 rps
-  ✔ uuid-random                                4,797,963 rps
-  ✔ uuid-random.bin + base-x.encode              846,178 rps
-  ✔ short-uuid                                   124,578 rps
-  ✔ crypto.randomBytes + base-x.encode           385,668 rps
-  ✔ nanoid                                     2,611,657 rps
-  ✔ nanoid [22]                                1,999,407 rps
-  ✔ nanoid [27]                                1,660,623 rps
-  ✔ nanoid [16]                                2,325,835 rps
-  ✔ ksuid                                        101,129 rps
-  ✔ ulid                                          29,957 rps
-  ✔ flexid [22]                                1,678,424 rps
-  ✔ flexid [27]                                1,483,165 rps
-  ✔ flexid [16]                                2,005,624 rps
+    Suite: UUID Benchmark
+    ✔ uuidv1                                     1,752,669 rps
+    ✔ uuidv4                                     1,396,807 rps
+    ✔ uuid-random                                4,797,963 rps
+    ✔ uuid-random.bin + base-x.encode              846,178 rps
+    ✔ short-uuid                                   124,578 rps
+    ✔ crypto.randomBytes + base-x.encode           385,668 rps
+    ✔ nanoid                                     2,611,657 rps
+    ✔ nanoid [22]                                1,999,407 rps
+    ✔ nanoid [27]                                1,660,623 rps
+    ✔ nanoid [16]                                2,325,835 rps
+    ✔ ksuid                                        101,129 rps
+    ✔ ulid                                          29,957 rps
+    ✔ flexid [22]                                1,678,424 rps
+    ✔ flexid [27]                                1,483,165 rps
+    ✔ flexid [16]                                2,005,624 rps
