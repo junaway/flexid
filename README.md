@@ -15,48 +15,53 @@ npm i flexid
   * Uses base encoding (48 through 64) for high-density, compact ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) and [short-uuid](https://www.npmjs.com/package/short-uuid))
   * Fast ! (almost as fast as [uuid/v4](https://www.npmjs.com/package/uuid))
 
-## Features
+## To do 
 
-## To do
-
-  * **Speed up the "randomness" part of the id.**
-The header (or timestamp) generator runs at 6 Mops while the payload (or randomness) generator runs at 2Mops (since it is based on [nanoid](https://www.npmjs.com/package/nanoid)). And we cannot go faster than [nanoid](https://www.npmjs.com/package/nanoid) as long as we rely on [nanoid](https://www.npmjs.com/package/nanoid)...
-If only we could use [uuid-random](https://www.npmjs.com/package/uuid-random) somehow and encode the .bin() output into an arbitrary base, and all that faster than [nanoid](https://www.npmjs.com/package/nanoid)...
-  * **Add a proper test suite...**
-  * **Add support for types.**
-Typescript is all there is nowadays...
+#### Before 1.0.0
+  * Add a proper public API definition.
+  * Add a proper test suite.
+  * Get feedback from at least 3 users.
 
 ## Example Usage
 
-### Basic setup
+### Hybrid package
 
 ```javascript
-const { flexid } = require('flexid')
+// ESM
+import { generator, BASE } from "flexid";
 
-/// 1 sec accuracy and over a 100 years before overflow
-/// 6 bytes of timestamp + 16 bytes of randomness
-/// human-readable encoding
-// size = 22
-// alphabet = BASE['58']
-// offset = 15e11
-// divider = 1000
-console.log(flexid()) // 15pQCM9cN5AMvSW9QinRs6
+// CJS
+const { generator, BASE } = require("flexid");
+
+// Usage
+const flexid = generator(BASE["58"]);
+console.log(flexid()) // 1Ci3rcX5Zog1Cfpo
+
 ```
 
-### Fully configured
+### Configuration
 
 ```javascript
-const { generator, BASE } = require('flexid')
-/// .1 sec accuracy and over a 1000 years before overflow
-/// 6 bytes of timestamp + 8 bytes of randomness
-/// alphanumeric encoding
-// size = 14
-// alphabet = BASE['62']
-// offset = 1577649600000
-// divider = 100
-const flexid = generator(14, BASE['62'], 1577649600000, 100);
-console.log(flexid()) // 0atQX4pOsjZTB4
+import { generator, BASE } from "flexid";
+
+const opts = {
+  alphabet: BASE["58"],
+  size: 16,
+  horizon: 100,
+  origin: 1500000000000,
+  resolution: 1000,
+  prefix: '',
+  timestamp: true,
+  namespace: '',
+  delimiter: ''
+}
+const flexid = generator(opts);
+console.log(flexid()) // 1Ci3rcX5Zog1Cfpo
 ```
+
+## API
+
+TBD.
 
 ## Contributing
 
