@@ -14,17 +14,17 @@ import { generator, BASE } from "../../dist/mjs/index.js";
 const benchmark = new Benchmarkify("UUID Benchmark").printHeader();
 const bench = benchmark.createSuite("UUID Benchmark");
 
-const pads = 40;
+const pads = 42;
 
 const ref = (name, func) => {
-  console.log(name.padStart(pads), func());
+  console.log(name.padEnd(pads), func());
   bench.ref(name, () => {
     func();
   });
 };
 
 const add = (name, func) => {
-  console.log(name.padStart(pads), func());
+  console.log(name.padEnd(pads), func());
   bench.add(name, () => {
     func();
   });
