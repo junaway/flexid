@@ -1,6 +1,6 @@
 {
   "name": "flexid",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "type": "module",
   "description": "A tiny, fast, sortable, flexible id generator",
   "main": "dist/cjs/index.js",
@@ -12,7 +12,8 @@
     }
   },
   "files": [
-    "dist/**.js"
+    "dist/cjs/*.js",
+    "dist/mjs/*.js"
   ],
   "keywords": [
     "flexid",
