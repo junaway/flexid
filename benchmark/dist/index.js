@@ -55,7 +55,7 @@ console.log("".padStart(pads), "Timestamp & Randomness in B[X] format");
 console.log("".padStart(pads), "-------------------------------------");
 add("ksuid", () => ksuid.randomSync().string);
 add("ulid", ulid);
-add("flexid [22]", generator(ALPHABET));
+add("flexid [22]", generator(ALPHABET, { size: 22 }));
 add("flexid [27]", generator(ALPHABET, { size: 27 }));
 add("flexid [16]", generator(ALPHABET, { size: 16 }));
 // --------------------------------------------------------------------/
