@@ -65,7 +65,7 @@ TBD.
 
 ## Contributing
 
-Feel free to [open an issue](https://github.com/jchook/uuid-random/issues) or submit a [pull request](https://github.com/jchook/uuid-random/pulls).
+Feel free to [open an issue](https://github.com/junaway/flexid/issues) or submit a [pull request](https://github.com/junaway/flexid/pulls).
 
 ## License
 
