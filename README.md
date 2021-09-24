@@ -79,35 +79,53 @@ MIT.
 
 ## UUID Benchmark  
 
-    Platform info:
-        Linux 5.3.0-28-generic x64
-        Node.JS: 14.17.3
-        V8: 8.4.371.23-node.67
-        CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz × 8
-        Memory: 15 GB
+  Platform info:
+      Linux 5.3.0-28-generic x64
+      Node.JS: 14.17.3
+      V8: 8.4.371.23-node.67
+      CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz × 8
+      Memory: 15 GB
 
                                          RFC4122 compliant UUID in UUID format
                                          -------------------------------------
-                                  uuidv1 bdb66120-1a43-11ec-931e-53ddb440e9e9     2,044,359 rps
-                                  uuidv4 95d851bc-6a53-47af-9d74-fe2b99c701a6     1,457,434 rps
-                             uuid-random b3093e93-397d-4e69-94d3-6ad947756911    14,055,521 rps
+                                  uuidv1 8f037ee0-1d21-11ec-ac46-1753de476f7a
+                                  uuidv4 de38d2d4-0da9-4feb-8eb0-14f92b409ad3
+                             uuid-random 7077807c-5745-426f-852b-40852084d75a
                                                                               
                                          RFC4122-compliant UUID in B[X] format
                                          -------------------------------------
-         uuid-random.bin + base-x.encode NGm7TZEnt7QLm7BNs7W2A4                   1,024,056 rps
-                              short-uuid htUe8uejao8Ktvrw5orKLW                     148,893 rps
+         uuid-random.bin + base-x.encode YJyqXkr78GTtxCUNEGHb4L
+                              short-uuid dSBkW2XoeRaMY3SkqWCZ8C
                                                                               
                                          Random                 in B[X] format
                                          -------------------------------------
-      crypto.randomBytes + base-x.encode 7DaFyNkK3itL4M4XzDhSid                     412,692 rps
-                             nanoid [21] sB5vuxTsHQnDXQojyweeF                    2,722,121 rps
-                             nanoid [22] EakGZteU4KgWkEd3bvHHkR                   2,125,235 rps
-                             nanoid [27] 3v1tvPb3hnvRqfTqSWMafS4LkxE              1,933,086 rps
-                             nanoid [16] 4dgUsEztfsk7mvtP                         2,695,503 rps
+      crypto.randomBytes + base-x.encode EJHgzDg3bXVvhThJm7XbVF
+                             nanoid      7qQxV1Me9DFYOA6U1Ng48
+                             nanoid [22] 1WkHZwSnKm6ibzkSdjco53
+                             nanoid [27] en236t1vCMmEYSP7rAhRwXiXWq1
+                             nanoid [16] GsFoKfkoTFZnoQ4g
                                                                               
                                          Timestamp & Random     in B[X] format
                                          -------------------------------------
-                                   ksuid 1yPr5HBV2LtDmEmSSULXa2vx8nU                106,245 rps
-                             flexid [22] 15pQCM9cN5AMvSW9QinRs6                   1,686,482 rps
-                             flexid [27] 15pQCMP5XQwUCFwewUsf9ritT9W              1,484,647 rps
-                             flexid [16] 15pQCM1b6sm2jgWy                         2,123,531 rps
+                                   ksuid 1ya9u6K2BSrqz9j4c9m9JP4zDc8
+                                    ulid 01FGBNAZEH3FQVZA1EVKJW0372
+                             flexid [22] 1ChzQa6apRojy1sYNdvzZh
+                             flexid [27] 1ChzQahc25eWRovi5gFXeYk5Sa1
+                             flexid [16] 1ChzQanzELjCZejN
+                                                                                
+  Suite: UUID Benchmark
+  ✔ uuidv1                                     1,752,669 rps
+  ✔ uuidv4                                     1,396,807 rps
+  ✔ uuid-random                                4,797,963 rps
+  ✔ uuid-random.bin + base-x.encode              846,178 rps
+  ✔ short-uuid                                   124,578 rps
+  ✔ crypto.randomBytes + base-x.encode           385,668 rps
+  ✔ nanoid                                     2,611,657 rps
+  ✔ nanoid [22]                                1,999,407 rps
+  ✔ nanoid [27]                                1,660,623 rps
+  ✔ nanoid [16]                                2,325,835 rps
+  ✔ ksuid                                        101,129 rps
+  ✔ ulid                                          29,957 rps
+  ✔ flexid [22]                                1,678,424 rps
+  ✔ flexid [27]                                1,483,165 rps
+  ✔ flexid [16]                                2,005,624 rps

@@ -1,0 +1,23 @@
+{
+  "name": "flexid-benchmark",
+  "version": "1.0.0",
+  "description": "flexid benchmark",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rm -fr dist/* && tsc -p tsconfig.json",
+    "benchmark": "node dist/index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "base-x": "^3.0.8",
+    "benchmarkify": "^3.0.0",
+    "ksuid": "^2.0.0",
+    "nanoid": "^3.1.25",
+    "short-uuid": "^4.2.0",
+    "ulid": "^2.3.0",
+    "uuid": "^8.3.2",
+    "uuid-random": "^1.3.2"
+  }
+}
