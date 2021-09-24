@@ -52,7 +52,7 @@ add("short-uuid", short.generate);
 
 // --------------------------------------------------------------------/
 console.log("".padStart(pads), "                                     ");
-console.log("".padStart(pads), "Random                 in B[X] format");
+console.log("".padStart(pads), "Randomness             in B[X] format");
 console.log("".padStart(pads), "-------------------------------------");
 
 add("crypto.randomBytes + base-x.encode", () =>
@@ -65,14 +65,24 @@ add("nanoid [16]", customAlphabet(ALPHABET, 16));
 
 // --------------------------------------------------------------------/
 console.log("".padStart(pads), "                                     ");
-console.log("".padStart(pads), "Timestamp & Random     in B[X] format");
+console.log("".padStart(pads), "Timestamp & Randomness in B[X] format");
 console.log("".padStart(pads), "-------------------------------------");
 
 add("ksuid", () => ksuid.randomSync().string);
 add("ulid", ulid);
 add("flexid [22]", generator(ALPHABET));
-add("flexid [27]", generator(ALPHABET, 27));
-add("flexid [16]", generator(ALPHABET, 16));
+add("flexid [27]", generator(ALPHABET, { size: 27 }));
+add("flexid [16]", generator(ALPHABET, { size: 16 }));
+
+// --------------------------------------------------------------------/
+console.log("".padStart(pads), "                                     ");
+console.log("".padStart(pads), "Extra features from flexid           ");
+console.log("".padStart(pads), "-------------------------------------");
+
+add("flexid [prefix=user]", generator(ALPHABET, { prefix: "user" }));
+add("flexid [namespace=qEOu9F]", generator(ALPHABET, { namespace: "qEOu9F" }));
+add("flexid [resolution=24h]", generator(ALPHABET, { resolution: 86400000 }));
+add("flexid [timestamp=false]", generator(ALPHABET, { timestamp: false }));
 
 // --------------------------------------------------------------------/
 console.log("".padStart(pads), "                                     ");

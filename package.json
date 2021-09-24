@@ -1,6 +1,6 @@
 {
   "name": "flexid",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "type": "module",
   "description": "A tiny, fast, sortable, flexible id generator",
   "main": "dist/cjs/index.js",
@@ -35,6 +35,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src --fix",
+    "prettier" : "prettier --write ./src",
     "build": "rm -fr dist/* && npm run lint && tsc -p tsconfig-mjs.json && tsc -p tsconfig-cjs.json && ./scripts/fixup"
   },
   "repository": {

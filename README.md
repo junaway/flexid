@@ -79,13 +79,14 @@ MIT.
 
 ## UUID Benchmark  
 
-  Platform info:
-      Linux 5.3.0-28-generic x64
-      Node.JS: 14.17.3
-      V8: 8.4.371.23-node.67
-      CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz × 8
-      Memory: 15 GB
+  Platform:
+    Linux 5.3.0-28-generic x64
+    Node.JS: 14.17.3
+    V8: 8.4.371.23-node.67
+    CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz × 8
+    Memory: 15 GB
 
+  Samples:
                                          RFC4122 compliant UUID in UUID format
                                          -------------------------------------
                                   uuidv1 8f037ee0-1d21-11ec-ac46-1753de476f7a
@@ -97,7 +98,7 @@ MIT.
          uuid-random.bin + base-x.encode YJyqXkr78GTtxCUNEGHb4L
                               short-uuid dSBkW2XoeRaMY3SkqWCZ8C
                                                                               
-                                         Random                 in B[X] format
+                                         Randomness             in B[X] format
                                          -------------------------------------
       crypto.randomBytes + base-x.encode EJHgzDg3bXVvhThJm7XbVF
                              nanoid      7qQxV1Me9DFYOA6U1Ng48
@@ -105,27 +106,40 @@ MIT.
                              nanoid [27] en236t1vCMmEYSP7rAhRwXiXWq1
                              nanoid [16] GsFoKfkoTFZnoQ4g
                                                                               
-                                         Timestamp & Random     in B[X] format
+                                         Timestamp & Randomness in B[X] format
                                          -------------------------------------
-                                   ksuid 1ya9u6K2BSrqz9j4c9m9JP4zDc8
-                                    ulid 01FGBNAZEH3FQVZA1EVKJW0372
-                             flexid [22] 1ChzQa6apRojy1sYNdvzZh
-                             flexid [27] 1ChzQahc25eWRovi5gFXeYk5Sa1
-                             flexid [16] 1ChzQanzELjCZejN
+                                   ksuid 1yaREefyNgjBVbPC6mCJU1Wg2CG
+                                    ulid 01FGBXFXRH9Y1PD87NCDX8M3YB
+                             flexid [22] 1Ci2wzpvQAqgWUxC
+                             flexid [27] 1Ci2wzxkKWJbGyFctyCqx3WnywJ
+                             flexid [16] 1Ci2wz62h3Mcvpmi
+                                                                              
+                                         Extra features from flexid           
+                                         -------------------------------------
+               flexid [prefix=user]      user_1Ci2wzVdAb5KjrJM
+               flexid [namespace=qEOu9F] 1Ci2wzqEOu9FrZnS
+               flexid [resolution=24h]   1TS9hfGSZSBz56Rc
+               flexid [timestamp=false]  v5gf5pWEoaCeujcz
+
                                                                                 
-    Suite: UUID Benchmark
-    ✔ uuidv1                                     1,752,669 rps
-    ✔ uuidv4                                     1,396,807 rps
-    ✔ uuid-random                                4,797,963 rps
-    ✔ uuid-random.bin + base-x.encode              846,178 rps
-    ✔ short-uuid                                   124,578 rps
-    ✔ crypto.randomBytes + base-x.encode           385,668 rps
-    ✔ nanoid                                     2,611,657 rps
-    ✔ nanoid [22]                                1,999,407 rps
-    ✔ nanoid [27]                                1,660,623 rps
-    ✔ nanoid [16]                                2,325,835 rps
-    ✔ ksuid                                        101,129 rps
-    ✔ ulid                                          29,957 rps
-    ✔ flexid [22]                                1,678,424 rps
-    ✔ flexid [27]                                1,483,165 rps
-    ✔ flexid [16]                                2,005,624 rps
+  Benchmark:
+    uuidv1 (#)                                    0%      (1,958,171 rps)   (avg: 510ns)
+    uuidv4                                   -18.74%      (1,591,120 rps)   (avg: 628ns)
+    uuid-random                             +189.64%      (5,671,569 rps)   (avg: 176ns)
+    uuid-random.bin + base-x.encode          -50.82%        (963,093 rps)   (avg: 1μs)
+    short-uuid                               -92.42%        (148,386 rps)   (avg: 6μs)
+    crypto.randomBytes + base-x.encode       -79.19%        (407,442 rps)   (avg: 2μs)
+    nanoid                                   +48.92%      (2,916,044 rps)   (avg: 342ns)
+    nanoid [22]                              +11.52%      (2,183,721 rps)   (avg: 457ns)
+    nanoid [27]                               -9.26%      (1,776,779 rps)   (avg: 562ns)
+    nanoid [16]                              +29.38%      (2,533,461 rps)   (avg: 394ns)
+    ksuid                                    -94.32%        (111,238 rps)   (avg: 8μs)
+    ulid                                      -98.3%         (33,281 rps)   (avg: 30μs)
+    flexid [22]                              +11.09%      (2,175,327 rps)   (avg: 459ns)
+    flexid [27]                              -24.32%      (1,481,984 rps)   (avg: 674ns)
+    flexid [16]                               +4.61%      (2,048,517 rps)   (avg: 488ns)
+    flexid [prefix=user]                      +0.97%      (1,977,196 rps)   (avg: 505ns)
+    flexid [namespace=qEOu9F]                 +25.4%      (2,455,545 rps)   (avg: 407ns)
+    flexid [resolution=24h]                   -8.12%      (1,799,262 rps)   (avg: 555ns)
+    flexid [timestamp=false]                 +10.41%      (2,162,007 rps)   (avg: 462ns)
+
