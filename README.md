@@ -82,12 +82,12 @@ MIT.
       uuidv1                            cf975be0-1d38-11ec-9c39-f717c56f08fd
       uuidv4                            9f3767a6-af78-4cce-80f7-55e992ffa7be
       uuid-random                       15982054-57fb-4883-acbb-2420f8db3fe7
-                                                                               
+
                                         RFC4122-compliant UUID in B[X] format
                                         -------------------------------------
       uuid-random.bin/base-x.encode     Tr7PuEBb74JEpTTKXNxATt
       short-uuid                        cCtMHpshL9hMS9dpJn3VF6
-                                                                               
+
                                         Randomness             in B[X] format
                                         -------------------------------------
       crypto.randomBytes/base-x.encode  UQY48cRXyENfwiaQvgkH2y
@@ -95,7 +95,7 @@ MIT.
       nanoid [22]                       LR6dFn91qmzytEdzVanJbT
       nanoid [27]                       dSGYnGF8au3ZeAizTVS5v3ZstRQ
       nanoid [16]                       5F8BmPMUCssH2aPb
-                                                                               
+
                                         Timestamp & Randomness in B[X] format
                                         -------------------------------------
       ksuid                             1yaU93haT1TCKyKnExxGnS3fQo9
@@ -103,7 +103,7 @@ MIT.
       flexid [22]                       1Ci3NkPsvQ84y9VBDmo9us
       flexid [27]                       1Ci3NkrcWRyYRZ8RYRYK9tsUZdo
       flexid [16]                       1Ci3NkMm6vfZZAfB
-                                                                               
+
                                         Extra features         in B[X] format
                                         -------------------------------------
       flexid [prefix=user]              user_1Ci3NkicryG6vyuh
