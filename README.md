@@ -44,8 +44,8 @@ console.log(flexid()) // 1Ci3rcX5Zog1Cfpo
 ```javascript
 import { generator, BASE } from "flexid";
 
+const alphabet = BASE["58"];
 const opts = {
-  alphabet: BASE["58"],
   size: 16,
   horizon: 100,
   origin: 1500000000000,
@@ -55,7 +55,7 @@ const opts = {
   namespace: '',
   delimiter: ''
 }
-const flexid = generator(opts);
+const flexid = generator(alphabet, opts);
 console.log(flexid()) // 1Ci3rcX5Zog1Cfpo
 ```
 
@@ -137,4 +137,3 @@ MIT.
       flexid [namespace=qEOu9F]             +21.57%   (2,432,503 rps)
       flexid [resolution=24h]                -6.36%   (1,873,745 rps)
       flexid [timestamp=false]              +12.95%   (2,259,942 rps)
-
