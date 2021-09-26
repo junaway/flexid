@@ -9,7 +9,8 @@ import { ulid } from "ulid";
 import IdGenerator from "auth0-id-generator";
 import Benchmarkify from "benchmarkify";
 import console from "console";
-import { generator, BASE } from "../../dist/mjs/index.js";
+// import { generator, BASE } from "../../dist/mjs/index.js";
+import { generator, BASE } from "flexid";
 
 // --------------------------------------------------------------------/
 const benchmark = new Benchmarkify("UUID Benchmark").printHeader();
