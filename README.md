@@ -1,5 +1,5 @@
 # flexid
-A tiny, fast, sortable, compact, flexible id generator.
+A tiny, fast, sortable, compact, flexible id generator. Think Stripe IDs, but customizable.
 
 ## Install
 
