@@ -13,7 +13,7 @@ npm i flexid
   * Uses [nanoid](https://www.npmjs.com/package/nanoid) for fast, secure collision-resistant ids
   * Uses Date.now as header for sortable ids (similar to [ksuid](https://www.npmjs.com/package/ksuid) and [ulid](https://www.npmjs.com/package/ulid))
   * Uses base encoding (48 through 64) for high-density, compact ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) and [short-uuid](https://www.npmjs.com/package/short-uuid))
-  * Fast ! (almost as fast as [uuid/v4](https://www.npmjs.com/package/uuid))
+  * Fast ! (almost as fast as [uuid/v4](https://www.npmjs.com/package/uuid), and 10x to 50x faster than [ksuid](https://www.npmjs.com/package/ksuid), [ulid](https://www.npmjs.com/package/ulid), [short-uuid](https://www.npmjs.com/package/short-uuid), and [auth0-id-generator](https://www.npmjs.com/package/auth0-id-generator))
 
 ## To do 
 
@@ -39,24 +39,42 @@ console.log(flexid()) // 1Ci3rcX5Zog1Cfpo
 
 ```
 
-### Configuration
+### Full configuration
 
 ```javascript
 import { generator, BASE } from "flexid";
 
 const alphabet = BASE["58"];
 const opts = {
-  size: 16,
-  horizon: 100,
-  origin: 1500000000000,
-  resolution: 1000,
-  prefix: '',
-  timestamp: true,
-  namespace: '',
-  delimiter: ''
+// --------------- DEFAULTS // DEFINITIONS
+  size:                  16,// Total ID size.
+  horizon:              100,// Number of years before overflow,
+  origin:     1500000000000,// starting from this epoch.
+  resolution:          1000,// Time resolution, in milliseconds.
+  timestamp:           true,// Whether to add a timestamp at all.
+  prefix:                '',// ID prefix (optional),
+  delimiter:            '_',// and its delimiter.
+  namespace:             '',// ID namespace (optional).
+// ------------------------ //
 }
 const flexid = generator(alphabet, opts);
 console.log(flexid()) // 1Ci3rcX5Zog1Cfpo
+```
+
+### Provided bases
+
+```javascript
+import { BASE } from "flexid";
+
+console.log(BASE)
+// All bases are lexicographically-ordered and URL-safe.
+//{
+//  '48': '346789ABCDEFGHJKLMNPQRTUVWXYabcdefghijkmnpqrtwxyz',
+//  '58': '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
+//  '60': '0123456789ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
+//  '62': '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+//  '64': '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
+//}
 ```
 
 ## API
@@ -82,7 +100,7 @@ MIT.
   
 
     Samples:
-                                        RFC4122 compliant UUID in UUID format
+                                        RFC4122-compliant UUID in UUID format
                                         -------------------------------------
       uuidv1                            cf975be0-1d38-11ec-9c39-f717c56f08fd
       uuidv4                            9f3767a6-af78-4cce-80f7-55e992ffa7be
@@ -96,6 +114,7 @@ MIT.
                                         Randomness             in B[X] format
                                         -------------------------------------
       crypto.randomBytes/base-x.encode  UQY48cRXyENfwiaQvgkH2y
+      auth0-id-generator [22]           r5cFsb68B2mLK3w48GhcDW
       nanoid                            JkHorm30NZKhfhECsr2Ya
       nanoid [22]                       LR6dFn91qmzytEdzVanJbT
       nanoid [27]                       dSGYnGF8au3ZeAizTVS5v3ZstRQ
@@ -118,22 +137,23 @@ MIT.
 
 
     Benchmark:
-      uuidv1 (#)                                 0%   (2,000,903 rps)
-      uuidv4                                -20.86%   (1,583,503 rps)
-      uuid-random                          +187.05%   (5,743,586 rps)
-      uuid-random.bin + base-x.encode       -49.45%   (1,011,367 rps)
-      short-uuid                               -93%     (140,131 rps)
-      crypto.randomBytes + base-x.encode    -80.96%     (381,015 rps)
-      nanoid                                +34.93%   (2,699,724 rps)
-      nanoid [22]                            +0.73%   (2,015,570 rps)
-      nanoid [27]                            -4.68%   (1,907,308 rps)
-      nanoid [16]                           +34.38%   (2,688,825 rps)
-      ksuid                                 -94.37%     (112,722 rps)
-      ulid                                  -98.46%      (30,720 rps)
-      flexid [22]                           -16.51%   (1,670,565 rps)
-      flexid [27]                            -28.1%   (1,438,674 rps)
-      flexid [16]                            -3.48%   (1,931,189 rps)
-      flexid [prefix=user]                   -6.38%   (1,873,235 rps)
-      flexid [namespace=qEOu9F]             +21.57%   (2,432,503 rps)
-      flexid [resolution=24h]                -6.36%   (1,873,745 rps)
-      flexid [timestamp=false]              +12.95%   (2,259,942 rps)
+      uuidv1                                     0%   (1,860,342 rps)
+      uuidv4                                -25.05%   (1,394,262 rps)
+      uuid-random                          +156.17%   (4,765,586 rps)
+      uuid-random.bin + base-x.encode        -53.6%     (863,273 rps)
+      short-uuid                            -93.24%     (125,741 rps)
+      crypto.randomBytes + base-x.encode    -81.58%     (342,591 rps)
+      auth0-id-generator [22]               -98.82%      (21,943 rps)
+      nanoid                                +41.35%   (2,629,508 rps)
+      nanoid [22]                            -3.09%   (1,802,781 rps)
+      nanoid [27]                           -13.17%   (1,615,268 rps)
+      nanoid [16]                           +23.19%   (2,291,679 rps)
+      ulid                                  -98.35%      (30,777 rps)
+      ksuid                                 -94.95%      (94,001 rps)
+      flexid [22]                              -12%   (1,637,010 rps)
+      flexid [27]                           -27.08%   (1,356,612 rps)
+      flexid [16]                            -1.42%   (1,833,837 rps)
+      flexid [prefix=user]                   +1.96%   (1,896,890 rps)
+      flexid [namespace=qEOu9F]             +35.47%   (2,520,150 rps)
+      flexid [resolution=24h]                -8.24%   (1,706,987 rps)
+      flexid [timestamp=false]              +19.08%   (2,215,384 rps)

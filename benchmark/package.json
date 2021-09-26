@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "auth0-id-generator": "^0.2.0",
     "base-x": "^3.0.8",
     "benchmarkify": "^3.0.0",
     "ksuid": "^2.0.0",

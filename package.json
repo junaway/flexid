@@ -1,6 +1,6 @@
 {
   "name": "flexid",
-  "version": "0.7.10",
+  "version": "0.7.11",
   "type": "module",
   "description": "A tiny, fast, sortable, flexible id generator",
   "main": "dist/cjs/index.js",
@@ -31,13 +31,13 @@
     "ulid",
     "uuid-random",
     "short-uuid",
-    "stripe"
+    "stripe-id"
   ],
   "author": "Juan Pablo Vega <@junaway>",
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src --fix",
-    "prettier" : "prettier --write ./src",
+    "prettier": "prettier --write ./src",
     "build": "rm -fr dist/* && npm run lint && tsc -p tsconfig-mjs.json && tsc -p tsconfig-cjs.json && ./scripts/fixup"
   },
   "repository": {
