@@ -10,10 +10,10 @@ npm i flexid
 ## Features
 
   * Tiny ! (no dependencies)
-  * Uses [crpyto](https://nodejs.org/api/crypto.html) for fast, secure collision-resistant ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) 
+  * Uses [crypto](https://nodejs.org/api/crypto.html) for fast, secure collision-resistant ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) 
   * Uses Date.now as header for sortable ids (similar to [ksuid](https://www.npmjs.com/package/ksuid) and [ulid](https://www.npmjs.com/package/ulid))
   * Uses base encoding (48 through 64) for high-density, compact ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) and [short-uuid](https://www.npmjs.com/package/short-uuid))
-  * Fast ! (as fast as [uuid/v4](https://www.npmjs.com/package/uuid), and 10x to 60x faster than [ksuid](https://www.npmjs.com/package/ksuid), [ulid](https://www.npmjs.com/package/ulid), [short-uuid](https://www.npmjs.com/package/short-uuid), and [auth0-id-generator](https://www.npmjs.com/package/auth0-id-generator), and also 5-6x faster than [ulid-onetable](https://github.com/sensedeep/dynamodb-onetable/blob/main/src/ULID.js))
+  * Fast ! (as fast as [uuid/v4](https://www.npmjs.com/package/uuid), and 10x to 100x faster than [ksuid](https://www.npmjs.com/package/ksuid), [ulid](https://www.npmjs.com/package/ulid), [short-uuid](https://www.npmjs.com/package/short-uuid), and [auth0-id-generator](https://www.npmjs.com/package/auth0-id-generator), and also 5-6x faster than [ulid-onetable](https://github.com/sensedeep/dynamodb-onetable/blob/main/src/ULID.js))
 
 ## To do 
 

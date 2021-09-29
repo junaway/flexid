@@ -1,6 +1,6 @@
 {
   "name": "flexid",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "type": "module",
   "description": "A tiny, fast, sortable, compact, flexible id generator. Think Stripe IDs but customizable, ULIDs but faster.",
   "main": "dist/cjs/index.js",
