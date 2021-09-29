@@ -1,0 +1,13 @@
+{
+  "name": "flexid-examples-mjs",
+  "version": "1.0.0",
+  "description": "flexid ESModule example",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rm -fr dist/* && tsc -p tsconfig.json",
+    "example": "node dist/index.js"
+  },
+  "author": "",
+  "license": "MIT"
+}

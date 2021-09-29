@@ -9,8 +9,12 @@ import { ulid } from "ulid";
 import IdGenerator from "auth0-id-generator";
 import Benchmarkify from "benchmarkify";
 import console from "console";
-// import { generator, BASE } from "../../dist/mjs/index.js";
-import { generator, BASE } from "flexid";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+import { generator, BASE } from "../../dist/mjs/index.js";
+// import { generator, BASE } from "flexid";
+import ULID from "./libs/onetable-ulid.js";
+const { argv } = yargs(hideBin(process.argv));
 // --------------------------------------------------------------------/
 const benchmark = new Benchmarkify("UUID Benchmark").printHeader();
 const bench = benchmark.createSuite("UUID Benchmark");
@@ -34,47 +38,62 @@ const encoder = base(ALPHABET);
 console.log("".padStart(pads), "RFC4122-compliant UUID in UUID format");
 console.log("".padStart(pads), "-------------------------------------");
 ref("uuidv1", uuidv1);
-add("uuidv4", uuidv4);
-add("uuid-random", uuid);
-// --------------------------------------------------------------------/
-console.log("".padStart(pads), "                                     ");
-console.log("".padStart(pads), "RFC4122-compliant UUID in B[X] format");
-console.log("".padStart(pads), "-------------------------------------");
-add("uuid-random.bin + base-x.encode", () => encoder.encode(uuid.bin()));
-add("short-uuid", short.generate);
-// --------------------------------------------------------------------/
-console.log("".padStart(pads), "                                     ");
-console.log("".padStart(pads), "Randomness             in B[X] format");
-console.log("".padStart(pads), "-------------------------------------");
-add("crypto.randomBytes + base-x.encode", () => encoder.encode(crypto.randomBytes(16)));
-add("nanoid     ", nanoid);
-const gen = new IdGenerator({
-    len: 22,
-    alphabet: ALPHABET,
-    prefix: "",
-    separator: "",
-});
-add("auth0-id-generator [22]", () => gen.get());
-add("nanoid [22]", customAlphabet(ALPHABET, 22));
-add("nanoid [27]", customAlphabet(ALPHABET, 27));
-add("nanoid [16]", customAlphabet(ALPHABET, 16));
+if (!argv.flexid) {
+    add("uuidv4", uuidv4);
+    add("uuid-random", uuid);
+}
+if (!argv.flexid) {
+    // --------------------------------------------------------------------/
+    console.log("".padStart(pads), "                                     ");
+    console.log("".padStart(pads), "RFC4122-compliant UUID in B[X] format");
+    console.log("".padStart(pads), "-------------------------------------");
+    add("uuid-random.bin + base-x.encode", () => encoder.encode(uuid.bin()));
+    add("short-uuid", short.generate);
+}
+if (!argv.flexid) {
+    // --------------------------------------------------------------------/
+    console.log("".padStart(pads), "                                     ");
+    console.log("".padStart(pads), "Randomness             in B[X] format");
+    console.log("".padStart(pads), "-------------------------------------");
+    add("crypto.randomBytes + base-x.encode", () => encoder.encode(crypto.randomBytes(16)));
+    add("nanoid     ", nanoid);
+    const gen = new IdGenerator({
+        len: 22,
+        alphabet: ALPHABET,
+        prefix: "",
+        separator: "",
+    });
+    add("auth0-id-generator [22]", () => gen.get());
+    add("nanoid [22]", customAlphabet(ALPHABET, 22));
+    add("nanoid [27]", customAlphabet(ALPHABET, 27));
+    add("nanoid [16]", customAlphabet(ALPHABET, 16));
+}
 // --------------------------------------------------------------------/
 console.log("".padStart(pads), "                                     ");
 console.log("".padStart(pads), "Timestamp & Randomness in B[X] format");
 console.log("".padStart(pads), "-------------------------------------");
-add("ulid", ulid);
-add("ksuid", () => ksuid.randomSync().string);
-add("flexid [22]", generator(ALPHABET, { size: 22 }));
-add("flexid [27]", generator(ALPHABET, { size: 27 }));
-add("flexid [16]", generator(ALPHABET, { size: 16 }));
-// --------------------------------------------------------------------/
-console.log("".padStart(pads), "                                     ");
-console.log("".padStart(pads), "Extra features from flexid           ");
-console.log("".padStart(pads), "-------------------------------------");
-add("flexid [prefix=user]", generator(ALPHABET, { prefix: "user" }));
-add("flexid [namespace=qEOu9F]", generator(ALPHABET, { namespace: "qEOu9F" }));
-add("flexid [resolution=24h]", generator(ALPHABET, { resolution: 86400000 }));
-add("flexid [timestamp=false]", generator(ALPHABET, { timestamp: false }));
+if (!argv.flexid) {
+    const ulidOnetable = () => {
+        const myULID = new ULID();
+        return myULID.toString;
+    };
+    add("ulid           ", ulid);
+    add("ulid [onetable]", ulidOnetable());
+    add("ksuid          ", () => ksuid.randomSync().string);
+}
+add("flexid [22]    ", generator(ALPHABET, { size: 22 }));
+add("flexid [27]    ", generator(ALPHABET, { size: 27 }));
+add("flexid [16]    ", generator(ALPHABET, { size: 16 }));
+if (!argv.flexid) {
+    // --------------------------------------------------------------------/
+    console.log("".padStart(pads), "                                     ");
+    console.log("".padStart(pads), "Extra features from flexid           ");
+    console.log("".padStart(pads), "-------------------------------------");
+    add("flexid [prefix=user]     ", generator(ALPHABET, { prefix: "user" }));
+    add("flexid [namespace=qEOu9F]", generator(ALPHABET, { namespace: "qEOu9F" }));
+    add("flexid [resolution=24h]  ", generator(ALPHABET, { resolution: 86400000 }));
+    add("flexid [timestamp=false] ", generator(ALPHABET, { timestamp: false }));
+}
 // --------------------------------------------------------------------/
 console.log("".padStart(pads), "                                     ");
 bench.run();
