@@ -9,11 +9,11 @@ npm i flexid
 
 ## Features
 
-  * Tiny ! (only one dependency : [nanoid](https://www.npmjs.com/package/nanoid))
-  * Uses [nanoid](https://www.npmjs.com/package/nanoid) for fast, secure collision-resistant ids
+  * Tiny ! (no dependencies)
+  * Uses [crpyto](https://nodejs.org/api/crypto.html) for fast, secure collision-resistant ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) 
   * Uses Date.now as header for sortable ids (similar to [ksuid](https://www.npmjs.com/package/ksuid) and [ulid](https://www.npmjs.com/package/ulid))
   * Uses base encoding (48 through 64) for high-density, compact ids (similar to [nanoid](https://www.npmjs.com/package/nanoid) and [short-uuid](https://www.npmjs.com/package/short-uuid))
-  * Fast ! (as fast as [uuid/v4](https://www.npmjs.com/package/uuid), and 10x to 60x faster than [ksuid](https://www.npmjs.com/package/ksuid), [ulid](https://www.npmjs.com/package/ulid), [short-uuid](https://www.npmjs.com/package/short-uuid), and [auth0-id-generator](https://www.npmjs.com/package/auth0-id-generator))
+  * Fast ! (as fast as [uuid/v4](https://www.npmjs.com/package/uuid), and 10x to 60x faster than [ksuid](https://www.npmjs.com/package/ksuid), [ulid](https://www.npmjs.com/package/ulid), [short-uuid](https://www.npmjs.com/package/short-uuid), and [auth0-id-generator](https://www.npmjs.com/package/auth0-id-generator), and also 5-6x faster than [ulid-onetable](https://github.com/sensedeep/dynamodb-onetable/blob/main/src/ULID.js))
 
 ## To do 
 
@@ -124,36 +124,40 @@ MIT.
                                         -------------------------------------
       ksuid                             1yaU93haT1TCKyKnExxGnS3fQo9
       ulid                              01FGBYVR51C5KEP4BMRRJC6Y2Z
+      ulid [onetable]                   F2VVDDA510YERM1E673P9NXH74
       flexid [22]                       1Ci3NkPsvQ84y9VBDmo9us
       flexid [27]                       1Ci3NkrcWRyYRZ8RYRYK9tsUZdo
       flexid [16]                       1Ci3NkMm6vfZZAfB
 
                                         Extra features         in B[X] format
                                         -------------------------------------
-      flexid [prefix=user]              user_1Ci3NkicryG6vyuh
-      flexid [namespace=qEOu9F]         1Ci3NkqEOu9FgSp6
-      flexid [resolution=24h]           1TSDW1hD7uc2o6g7
-      flexid [timestamp=false]          yNWHzb5S6ZfDKESJ
+      flexid [prefix=user]              user_1CkMeVD7qJjPS6KT
+      flexid [namespace=qEOu9F]         1CkMeVqEOu9Fxp8F
+      flexid [resolution=24h]           1TXa5yThgQ5yFSUn
+      flexid [resolution=1ms]           117Ea5BhoE48589h
+      flexid [timestamp=false]          e6U8aWYGYNTm1AvE
 
 
     Benchmark:
-      uuidv1                                     0%   (1,860,342 rps)
-      uuidv4                                -25.05%   (1,394,262 rps)
-      uuid-random                          +156.17%   (4,765,586 rps)
-      uuid-random.bin + base-x.encode        -53.6%     (863,273 rps)
-      short-uuid                            -93.24%     (125,741 rps)
-      crypto.randomBytes + base-x.encode    -81.58%     (342,591 rps)
-      auth0-id-generator [22]               -98.82%      (21,943 rps)
-      nanoid                                +41.35%   (2,629,508 rps)
-      nanoid [22]                            -3.09%   (1,802,781 rps)
-      nanoid [27]                           -13.17%   (1,615,268 rps)
-      nanoid [16]                           +23.19%   (2,291,679 rps)
-      ulid                                  -98.35%      (30,777 rps)
-      ksuid                                 -94.95%      (94,001 rps)
-      flexid [22]                              -12%   (1,637,010 rps)
-      flexid [27]                           -27.08%   (1,356,612 rps)
-      flexid [16]                            -1.42%   (1,833,837 rps)
-      flexid [prefix=user]                   +1.96%   (1,896,890 rps)
-      flexid [namespace=qEOu9F]             +35.47%   (2,520,150 rps)
-      flexid [resolution=24h]                -8.24%   (1,706,987 rps)
-      flexid [timestamp=false]              +19.08%   (2,215,384 rps)
+      uuidv1 (#)                                 0%   (1,960,333 rps)
+      uuidv4                                -23.24%   (1,504,687 rps)
+      uuid-random                          +159.24%   (5,081,905 rps)
+      uuid-random.bin + base-x.encode       -55.58%     (870,744 rps)
+      short-uuid                            -93.79%     (121,672 rps)
+      crypto.randomBytes + base-x.encode    -81.37%     (365,222 rps)
+      nanoid                                   +39%   (2,724,905 rps)
+      auth0-id-generator [22]               -98.72%      (25,096 rps)
+      nanoid [22]                           -17.25%   (1,622,230 rps)
+      nanoid [27]                           -18.64%   (1,594,959 rps)
+      nanoid [16]                            +7.65%   (2,110,205 rps)
+      ulid                                  -98.16%      (35,975 rps)
+      ulid [onetable]                        -78.4%     (423,342 rps)
+      ksuid                                 -94.51%     (107,640 rps)
+      flexid [22]                           -13.97%   (1,686,552 rps)
+      flexid [27]                           -28.76%   (1,396,506 rps)
+      flexid [16]                            +3.23%   (2,023,731 rps)
+      flexid [prefix=user]                   -8.12%   (1,801,112 rps)
+      flexid [namespace=qEOu9F]             +51.97%   (2,979,111 rps)
+      flexid [resolution=24h]               -12.25%   (1,720,203 rps)
+      flexid [resolution=1ms]                -6.14%   (1,839,992 rps)
+      flexid [timestamp=false]               -4.17%   (1,878,517 rps)

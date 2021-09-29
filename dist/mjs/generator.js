@@ -1,4 +1,4 @@
-import { customAlphabet as randomizer } from "nanoid";
+import randomizer from "./randomizer.js";
 import recorder from "./recorder.js";
 import translator from "./translator.js";
 const YEAR_IN_MS = 31557600000; // 365.25 * 24 * 60 * 60 * 1000
@@ -57,9 +57,9 @@ const generator = (alphabet, opts = {}) => {
         : () => "";
     const nsize = params.namespace.length;
     const rsize = params.size - tsize - nsize;
-    if (rsize < 2)
+    if (rsize < 0)
         Error();
-    const randomness = randomizer(params.alphabet, rsize);
+    const randomness = randomizer(params.alphabet, rsize).generate;
     return () => params.prefix +
         params.delimiter +
         timestamp() +

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const nanoid_1 = require("nanoid");
+const randomizer_js_1 = __importDefault(require("./randomizer.js"));
 const recorder_js_1 = __importDefault(require("./recorder.js"));
 const translator_js_1 = __importDefault(require("./translator.js"));
 const YEAR_IN_MS = 31557600000; // 365.25 * 24 * 60 * 60 * 1000
@@ -62,9 +62,9 @@ const generator = (alphabet, opts = {}) => {
         : () => "";
     const nsize = params.namespace.length;
     const rsize = params.size - tsize - nsize;
-    if (rsize < 2)
+    if (rsize < 0)
         Error();
-    const randomness = (0, nanoid_1.customAlphabet)(params.alphabet, rsize);
+    const randomness = (0, randomizer_js_1.default)(params.alphabet, rsize).generate;
     return () => params.prefix +
         params.delimiter +
         timestamp() +
