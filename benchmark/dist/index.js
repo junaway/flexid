@@ -34,9 +34,11 @@ const add = (name, func) => {
 // --------------------------------------------------------------------/
 const ALPHABET = BASE["58"];
 const encoder = base(ALPHABET);
-// --------------------------------------------------------------------/
-console.log("".padStart(pads), "RFC4122-compliant UUID in UUID format");
-console.log("".padStart(pads), "-------------------------------------");
+if (!argv.flexid) {
+    // --------------------------------------------------------------------/
+    console.log("".padStart(pads), "RFC4122-compliant UUID in UUID format");
+    console.log("".padStart(pads), "-------------------------------------");
+}
 ref("uuidv1", uuidv1);
 if (!argv.flexid) {
     add("uuidv4", uuidv4);
@@ -64,21 +66,25 @@ if (!argv.flexid) {
         separator: "",
     });
     add("auth0-id-generator [22]", () => gen.get());
-    add("nanoid [22]", customAlphabet(ALPHABET, 22));
+}
+add("nanoid [22]", customAlphabet(ALPHABET, 22));
+if (!argv.flexid) {
     add("nanoid [27]", customAlphabet(ALPHABET, 27));
     add("nanoid [16]", customAlphabet(ALPHABET, 16));
 }
-// --------------------------------------------------------------------/
-console.log("".padStart(pads), "                                     ");
-console.log("".padStart(pads), "Timestamp & Randomness in B[X] format");
-console.log("".padStart(pads), "-------------------------------------");
 if (!argv.flexid) {
-    const ulidOnetable = () => {
-        const myULID = new ULID();
-        return myULID.toString;
-    };
+    // --------------------------------------------------------------------/
+    console.log("".padStart(pads), "                                     ");
+    console.log("".padStart(pads), "Timestamp & Randomness in B[X] format");
+    console.log("".padStart(pads), "-------------------------------------");
     add("ulid           ", ulid);
-    add("ulid [onetable]", ulidOnetable());
+}
+const ulidOnetable = () => {
+    const myULID = new ULID();
+    return myULID.toString;
+};
+add("ulid [onetable]", ulidOnetable());
+if (!argv.flexid) {
     add("ksuid          ", () => ksuid.randomSync().string);
 }
 add("flexid [22]    ", generator(ALPHABET, { size: 22 }));
@@ -92,6 +98,9 @@ if (!argv.flexid) {
     add("flexid [prefix=user]     ", generator(ALPHABET, { prefix: "user" }));
     add("flexid [namespace=qEOu9F]", generator(ALPHABET, { namespace: "qEOu9F" }));
     add("flexid [resolution=24h]  ", generator(ALPHABET, { resolution: 86400000 }));
+}
+add("flexid [resolution=1ms]  ", generator(ALPHABET, { resolution: 1 }));
+if (!argv.flexid) {
     add("flexid [timestamp=false] ", generator(ALPHABET, { timestamp: false }));
 }
 // --------------------------------------------------------------------/

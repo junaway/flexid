@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 import uuid from "uuid-random";
 import base from "base-x";
@@ -46,80 +48,76 @@ console.log("".padStart(pads), "RFC4122-compliant UUID in UUID format");
 console.log("".padStart(pads), "-------------------------------------");
 
 ref("uuidv1", uuidv1);
+!argv.flexid && add("uuidv4", uuidv4);
+!argv.flexid && add("uuid-random", uuid);
 
-if (!argv.flexid) {
-  add("uuidv4", uuidv4);
-  add("uuid-random", uuid);
-}
+// --------------------------------------------------------------------/
+console.log("".padStart(pads), "                                     ");
+console.log("".padStart(pads), "RFC4122-compliant UUID in B[X] format");
+console.log("".padStart(pads), "-------------------------------------");
 
-if (!argv.flexid) {
-  // --------------------------------------------------------------------/
-  console.log("".padStart(pads), "                                     ");
-  console.log("".padStart(pads), "RFC4122-compliant UUID in B[X] format");
-  console.log("".padStart(pads), "-------------------------------------");
-
+!argv.flexid &&
   add("uuid-random.bin + base-x.encode", () => encoder.encode(uuid.bin()));
-  add("short-uuid", short.generate);
-}
+!argv.flexid && add("short-uuid", short.generate);
 
-if (!argv.flexid) {
-  // --------------------------------------------------------------------/
-  console.log("".padStart(pads), "                                     ");
-  console.log("".padStart(pads), "Randomness             in B[X] format");
-  console.log("".padStart(pads), "-------------------------------------");
+// --------------------------------------------------------------------/
+console.log("".padStart(pads), "                                     ");
+console.log("".padStart(pads), "Randomness             in B[X] format");
+console.log("".padStart(pads), "-------------------------------------");
 
-  add("crypto.randomBytes + base-x.encode", () =>
+!argv.flexid &&
+  add("crypto.randomBytes + base-x", () =>
     encoder.encode(crypto.randomBytes(16))
   );
-  add("nanoid     ", nanoid);
-  const gen = new IdGenerator({
-    len: 22,
-    alphabet: ALPHABET,
-    prefix: "",
-    separator: "",
-  });
-  add("auth0-id-generator [22]", () => gen.get());
-  add("nanoid [22]", customAlphabet(ALPHABET, 22));
-  add("nanoid [27]", customAlphabet(ALPHABET, 27));
-  add("nanoid [16]", customAlphabet(ALPHABET, 16));
-}
+!argv.flexid && add("nanoid     ", nanoid);
+const gen = new IdGenerator({
+  len: 22,
+  alphabet: ALPHABET,
+  prefix: "",
+  separator: "",
+});
+!argv.flexid && add("auth0-id-generator [22]", () => gen.get());
+add("nanoid [22]", customAlphabet(ALPHABET, 22));
+!argv.flexid && add("nanoid [27]", customAlphabet(ALPHABET, 27));
+!argv.flexid && add("nanoid [16]", customAlphabet(ALPHABET, 16));
 
 // --------------------------------------------------------------------/
 console.log("".padStart(pads), "                                     ");
 console.log("".padStart(pads), "Timestamp & Randomness in B[X] format");
 console.log("".padStart(pads), "-------------------------------------");
 
-if (!argv.flexid) {
-  const ulidOnetable = () => {
-    const myULID = new ULID();
-    return myULID.toString;
-  };
+!argv.flexid && add("ulid           ", ulid);
 
-  add("ulid           ", ulid);
-  add("ulid [onetable]", ulidOnetable());
-  add("ksuid          ", () => ksuid.randomSync().string);
-}
+const ulidOnetable = () => {
+  const myULID = new ULID();
+  return myULID.toString;
+};
+add("ulid [onetable]", ulidOnetable());
+!argv.flexid && add("ksuid          ", () => ksuid.randomSync().string);
 add("flexid [22]    ", generator(ALPHABET, { size: 22 }));
 add("flexid [27]    ", generator(ALPHABET, { size: 27 }));
 add("flexid [16]    ", generator(ALPHABET, { size: 16 }));
 
-if (!argv.flexid) {
-  // --------------------------------------------------------------------/
-  console.log("".padStart(pads), "                                     ");
-  console.log("".padStart(pads), "Extra features from flexid           ");
-  console.log("".padStart(pads), "-------------------------------------");
+// --------------------------------------------------------------------/
+console.log("".padStart(pads), "                                     ");
+console.log("".padStart(pads), "Extra features from flexid           ");
+console.log("".padStart(pads), "-------------------------------------");
 
+!argv.flexid &&
   add("flexid [prefix=user]     ", generator(ALPHABET, { prefix: "user" }));
+!argv.flexid &&
   add(
     "flexid [namespace=qEOu9F]",
     generator(ALPHABET, { namespace: "qEOu9F" })
   );
+!argv.flexid &&
   add(
     "flexid [resolution=24h]  ",
     generator(ALPHABET, { resolution: 86400000 })
   );
+add("flexid [resolution=1ms]  ", generator(ALPHABET, { resolution: 1 }));
+!argv.flexid &&
   add("flexid [timestamp=false] ", generator(ALPHABET, { timestamp: false }));
-}
 
 // --------------------------------------------------------------------/
 console.log("".padStart(pads), "                                     ");
