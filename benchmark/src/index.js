@@ -66,7 +66,7 @@ console.log("".padStart(pads), "Randomness             in B[X] format");
 console.log("".padStart(pads), "-------------------------------------");
 
 !argv.flexid &&
-  add("crypto.randomBytes + base-x", () =>
+  add("crypto.randomBytes + base-x.encode", () =>
     encoder.encode(crypto.randomBytes(16))
   );
 !argv.flexid && add("nanoid     ", nanoid);
