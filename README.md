@@ -77,6 +77,36 @@ console.log(BASE)
 //}
 ```
 
+### Browser support (example using webpack)
+
+```javascript
+const webpack = require("webpack");
+
+module.exports = {
+  // ... rest of the webpack config
+  resolve: {
+    // ... rest of the resolve config
+    fallback: {
+      process: require.resolve("process/browser"),
+      crypto: require.resolve("crypto-browserify"),
+      stream: require.resolve("stream-browserify"),
+      buffer: require.resolve("buffer/"),
+    },
+  },
+  plugins: [
+    // ... rest of the resolve config
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+      Buffer: ["buffer", "Buffer"],
+    }),
+  ],
+};
+```
+
+### Examples
+
+See CommonJS, ESModule, and Browser examples on [github](https://github.com/junaway/flexid/examples).
+
 ## API
 
 TBD.
