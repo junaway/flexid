@@ -1,0 +1,23 @@
+{
+  "name": "flexid-examples-browser",
+  "version": "1.0.0",
+  "description": "flexid Browser example",
+  "private": true,
+  "scripts": {
+    "build": "rm -fr dist/* && npx webpack && cp index.html dist/index.html",
+    "start": "google-chrome src/index.html"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "flexid": "^0.8.2"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0"
+  }
+}
